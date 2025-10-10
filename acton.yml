@@ -1,0 +1,46 @@
+name: 'Generate Assets'
+description: 'Generate Minecraft default resourcepack assets.'
+author: 'Mqxx'
+branding:
+  icon: 'file'
+  color: 'green'
+
+inputs:
+  version: 
+    description: 'Minecraft version to generate assets for.'
+    required: false
+    default: 'latest-release'
+
+  path:
+    description: 'Relative path under $GITHUB_WORKSPACE to place the assets.'
+    required: false
+    default: './default'
+
+  api-url:
+    description: 'URL to the Minecraft manifest API.'
+    required: false
+    default: 'https://piston-meta.mojang.com/mc/game/version_manifest_v2.json'
+
+  parallel-downloads:
+    description: 'How much files to download in parallel.'
+    required: false
+    default: '5'
+
+  download-retries:
+    description: 'How much times to retry a failed download.'
+    required: false
+    default: '3'
+
+outputs:
+  failed-downloads:
+    description: 'List of URLs that failed to download.'
+
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    INPUT_VERSION: ${{ inputs.version }}
+    INPUT_PATH: ${{ inputs.path }}
+    INPUT_MANIFEST_API_URL: ${{ inputs.api-url }}
+    INPUT_PARALLEL_DOWNLOADS: ${{ inputs.parallel-downloads }}
+    INPUT_DOWNLOAD_RETRIES: ${{ inputs.download-retries }}

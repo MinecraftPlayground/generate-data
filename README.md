@@ -1,5 +1,5 @@
 # generate-data
-GitHub Action that generates Minecraft default resourcepack assets for a specified version.
+GitHub Action that generates Minecraft default datapack data for a specified version.
 
 [![Test Action](https://github.com/MinecraftPlayground/generate-data/actions/workflows/test_action.yml/badge.svg)](https://github.com/MinecraftPlayground/generate-data/actions/workflows/test_action.yml)
 
@@ -10,7 +10,7 @@ jobs:
   download-data:
     runs-on: ubuntu-latest
     steps:
-      - name: 'Download assets to "./default_data"'
+      - name: 'Download data to "./default_data"'
         id: download_data
         uses: MinecraftPlayground/generate-data@latest
         with:

@@ -1,0 +1,27 @@
+name: 'Test Action'
+on:
+  workflow_dispatch: {}
+
+  push:
+    branches: ['main']
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    name: 'Test Generate Data action'
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 'Test'
+        id: test
+        uses: ./
+        with:
+          path: './default'
+          version: 'latest-snapshot'
+      
+      - name: 'Upload generated data'
+        uses: actions/upload-artifact@v4
+        with:
+          name: 'default'
+          path: './default'
+          compression-level: 9

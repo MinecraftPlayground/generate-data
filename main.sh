@@ -56,7 +56,7 @@ fi
 echo "Saved \"client.jar\" to \"$TEMP_DOWNLOAD_DIR\"."
 
 echo "::group:: Extract assets from client.jar"
-unzip "$TEMP_DOWNLOAD_DIR/client.jar" -d client \
+unzip "$TEMP_DOWNLOAD_DIR/client.jar" -d $INPUT_PATH \
     -x "*.class" \
     "assets/*" \
     "com/*" \

@@ -56,8 +56,12 @@ fi
 echo "Saved \"client.jar\" to \"$TEMP_DOWNLOAD_DIR\"."
 
 echo "::group:: Extract assets from client.jar"
-unzip "$TEMP_DOWNLOAD_DIR/client.jar" "pack.png" -d "$INPUT_PATH"
-unzip "$TEMP_DOWNLOAD_DIR/client.jar" "data/*" -d "$INPUT_PATH"
+unzip "$TEMP_DOWNLOAD_DIR/client.jar" -d client \
+    -x "*.class" \
+    "assets/*" \
+    "com/*" \
+    "META-INF/*" \
+    "net/*"
 echo "::endgroup::"
 
 echo "All files downloaded and processed."
